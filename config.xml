@@ -18,7 +18,7 @@
     Julie Senter
   </author>
 
-  <preference name="phonegap-version" value="cli-6.3.0" />
+  <preference name="phonegap-version" value="cli-6.5.0" />
   <plugin name="cordova-plugin-whitelist" source="npm" />
   <access origin="*" />
 
