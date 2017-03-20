@@ -1,0 +1,6 @@
+h1 {font-family: sans-serif; font-size: large; text-align: center;}
+h2 {font-family: sans-serif; text-align: center;}
+#Section1 {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #eeeedd; text-align: center; padding: 5px;}
+#Section2 {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #e0e0eb; text-align: center; padding: 5px;}
+img {height: 25%; width: 25%;}
+footer {position: absolute; bottom: 0; height: 18%;}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns = "http://www.w3.org/ns/widgets"
+    xmlns:gap = "http://phonegap.com/ns/1.0"
+    id = "edu.uab.business.studentapp"
+    versionCode = "1"
+    version = "0.0.1" >
+    
+  <!-- versionCode is optional and Android only -->
+
+  <name>Module 1 Mobile App</name>
+
+  <description>
+    Module 1 Mobile App
+  </description>
+
+  <author>
+    Julie Senter
+  </author>
+
+  <preference name="phonegap-version" value="cli-6.3.0" />
+  <plugin name="cordova-plugin-whitelist" source="npm" />
+  <access origin="*" />
+
+</widget>
