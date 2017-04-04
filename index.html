@@ -8,12 +8,13 @@
 </head>
 
 <body>
-     <section id="title">
+    
+    <section id="title">
         <h1>Assignment 3</h1>
         <hr>
-          <select onchange="MenuChoice(value)" id="menu">
+            <select onchange="MenuChoice(value)" id="menu">
             <option value="None">Please select an option</option>
-            <option value="customerlist">List Customers</option>
+            <option value="customerlist">Customer List</option>
             <option value="orderhistory">Customer Order History</option>
             <option value="update">Update Customer Data</option>
         </select>
@@ -21,26 +22,26 @@
     <hr>
     <section id="customerlist">
         <h2>Customer List</h2>
-        <hr>
-        <p id="listcustomers">Customer List</p>
+       <hr>
+       <p id="listcustomers">Customer List</p>
     </section>
     <section id="orderhistory">
         <h2>Customer Order History</h2>
-         <p id="orders">Order History</p>
+        <p id="orders">Order History</p>
     </section>
     <section id="customerupdate">
-        <h3>Customer Information</h3>
+        <h2>Customer Information</h2>
         <hr>
-        <label>Customer ID:</label>
-        <input type="text" id="customerID" disabled="true">
-        <br>
-        <label>Customer Name:</label>
-        <input type="text" id="customername">
-        <br>
-        <label>City:</label>
-        <input type="text" id="city">
-        <br>
-        <button onclick="CustomerUpdate()">Update Customer Information</button>
+       <label>Customer ID:</label>
+       <input type="text" id="CustomerID" disabled="true">
+       <br>
+       <label>Company Name:</label>
+       <input type="text" id="CompanyName">
+       <br>
+       <label>City:</label>
+       <input type="text" id="city">
+       <br>
+       <button onclick="CustomerUpdate()">Update Customer Information</button>
     </section>
     <footer>
         <p>Julie Senter

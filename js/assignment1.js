@@ -43,16 +43,17 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
         {
             var display="<table><tr><th>Update</th><th>Customer ID</th><th>Company Name</th><th>City</th></tr>"; //Table headings
             var count=0;//Count variable loop
-            var companyname="";//Variable to store the Customer Name
-            var customerid="";//Variable to store the Customer ID
-            var city="";//Variable to store the Customer City
+             var customerid="";//Variable to store the Customer ID
+             var companyname="";//Variable to store the Customer Name
+             var city="";//Variable to store the Customer City
             for(count=0; count<result.GetAllCustomersResult.length; count++)//Loop for creating table rows
             {
-                customerid='<a href="javascript:Orders(' + "'" + customerid + "');" + '">';
-                customerid += result.GetAllCustomersResult[count].CustomerID;
-                customerid +='</a>';//Anchor link: <a href="javascript:function("parameter");">
+                //Anchor link: <a href="javascript:function("parameter");">
                 customerid=result.GetAllCustomersResult[count].CustomerID;//Assigns the Customer ID to a variable
-                companyname=result.GetAllCustomersResult[count].CompanyName;//Assignes the Customer Name to a variable
+                companyname='<a href="javascript:Orders(' + "'" + customerid + "');" + '">';
+                companyname+=result.GetAllCustomersResult[count].CompanyName;
+                companyname+='</a>';
+                
                 city=result.GetAllCustomersResult[count].City;//Assigns Customer city to a variable
                 display+='<tr><td><button onclick="CustomerInfo(' + "" + customerid + "')" + '">Update Customer Info</button></td><td>' + customerid +
                 "</td><td>" + companyname + "</td><td>" + city + "</td></tr>";//Creates a table row
@@ -99,12 +100,14 @@ function CustomerInfo(customerid)
         
         xmlhttp.onreadystatechange=function(){
             if (xmlhttp.readyState==4&&xmlhttp.status==200){
-                var output=JSONparse(xmlhttp.responseText);
+                var output=JSON.parse(xmlhttp.responseText);
+                document.getElementById("OrderDate").value=output[0].OrderDate;
                 document.getElementById("OrderID").value=output[0].OrderID;
                 document.getElementById("ShipAddress").value=output[0].ShipAddress;
                 document.getElementById("ShipCity").value=output[0].ShipCity;
                 document.getElementById("ShipName").value=output[0].ShipName;
                 document.getElementById("ShipPostCode").value=output[0].ShipPostCode;
+                document.getElementById("ShippedDate").value=output[0].ShippedDate;
                 MenuChoice("update");
             }
         }
@@ -127,13 +130,15 @@ function CustomerUpdate()
         }
     }
     var url="https://student.business.uab.edu/jsonwebservice/service1.svc/UpdateOrderAddress/";
-    var orderid=document.getElementById("orderID").value;
+    var orderdate=document.getElementById("OrderDate").value;
+    var orderid=document.getElementById("OrderID").value;
     var shipaddress=document.getElementById("ShipAddress").value;
     var shipcity=document.getElementById("ShipCity").value;
     var shipname=document.getElementByID("ShipName").value;
     var shippostcode=document.getElementById("ShipPostCode").value;
+    var shippeddate=document.getElementById("ShippedDate").value;
     
-    var parameters='{"OrderID";' + orderid + ',"ShipAddress":"' + shipaddress + '","ShipCity":"' + shipcity + '","ShipName":"' + shipname + '","ShipPostCode":"' + shippostcode + '"}';//Creates the JSON string to be sent for the update operation
+    var parameters='{"OrderDate":' + orderdate + ',"OrderID":"' + orderid + ',"ShipAddress":"' + shipaddress + '","ShipCity":"' + shipcity + '","ShipName":"' + shipname + '","ShipPostCode":"' + shippostcode + '","ShippedDate":"' + shippeddate + '"}';//Creates the JSON string to be sent for the update operation
     
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
