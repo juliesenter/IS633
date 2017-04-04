@@ -2,34 +2,45 @@
 
 <html>
 <head>
-    <title>Assignment 1</title>
+    <title>Assignment 3</title>
     <link rel="stylesheet" type="text/css" href="styles/assignment1.css" />
     <script src="js/assignment1.js"></script>
 </head>
 
 <body>
-    <header>
-        <h1>Assignment 1</h1>
+     <section id="title">
+        <h1>Assignment 3</h1>
         <hr>
-    </header>
-    <section id="title">
-        
-        <select onchange="MenuChoice(value)" id="menu">
-            <option value="None">Please select an option.</option>
-            <option value="Section1">Show Area 1</option>
-            <option value="Section2">Show Area 2</option>
+          <select onchange="MenuChoice(value)" id="menu">
+            <option value="None">Please select an option</option>
+            <option value="customerlist">List Customers</option>
+            <option value="orderhistory">Customer Order History</option>
+            <option value="update">Update Customer Data</option>
         </select>
     </section>
     <hr>
-    <section id="Section1">
-        <h2>This is Area 1</h2>
-        <p>I just finished reading "All the Light We Cannot See. This past weekend. It was an amazing book!</p>
-        <img src="images/section1.jpg">
+    <section id="customerlist">
+        <h2>Customer List</h2>
+        <hr>
+        <p id="listcustomers">Customer List</p>
     </section>
-    <section id="Section2">
-        <h2>This is Area 2</h2>
-        <p>Our book club has not selected the next title to read, but should do so by next weekend. In the meantime, I picked up this classic to read again.</p>
-        <img src="images/section2.jpg">
+    <section id="orderhistory">
+        <h2>Customer Order History</h2>
+         <p id="orders">Order History</p>
+    </section>
+    <section id="customerupdate">
+        <h3>Customer Information</h3>
+        <hr>
+        <label>Customer ID:</label>
+        <input type="text" id="customerID" disabled="true">
+        <br>
+        <label>Customer Name:</label>
+        <input type="text" id="customername">
+        <br>
+        <label>City:</label>
+        <input type="text" id="city">
+        <br>
+        <button onclick="CustomerUpdate()">Update Customer Information</button>
     </section>
     <footer>
         <p>Julie Senter
