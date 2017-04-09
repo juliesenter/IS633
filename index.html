@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Assignment 3</title>
+    <title>Assignment 2</title>
     <link rel="stylesheet" type="text/css" href="styles/assignment1.css" />
     <script src="js/assignment1.js"></script>
 </head>
@@ -10,13 +10,14 @@
 <body>
     
     <section id="title">
-        <h1>Assignment 3</h1>
+        <h1>Assignment 2</h1>
         <hr>
             <select onchange="MenuChoice(value)" id="menu">
             <option value="None">Please select an option</option>
             <option value="customerlist">Customer List</option>
             <option value="orderhistory">Customer Order History</option>
             <option value="update">Update Customer Data</option>
+            <option value="about">About This App</option>
         </select>
     </section>
     <hr>
@@ -27,7 +28,15 @@
     </section>
     <section id="orderhistory">
         <h2>Customer Order History</h2>
+        <label>Customer ID:</label>
+        <input type="text" id="CustomerID">
+        <br>
+       <button onclick="OrderHistory()">Get Customer Order History</button>
+       <br>
         <p id="orders">Order History</p>
+        <br>
+        <br>
+       <button onclick="MenuChoice('customerlist')">Back to Customer List</button>
     </section>
     <section id="customerupdate">
         <h2>Customer Information</h2>
@@ -41,7 +50,14 @@
        <label>City:</label>
        <input type="text" id="city">
        <br>
-       <button onclick="CustomerUpdate()">Update Customer Information</button>
+       <button onclick="CustomerUpdate(CustomerID)">Update Customer Information</button>
+    </section>
+    <section id="about">
+        <h2>About This App</h2>
+        <hr>
+        <p>This app is the result of the blood, sweat and many frustrated tears of Julie Senter</p>
+        <p>App not working correctly? Email <a href="mailto:jsenter@uab.edu">jsenter@uab.edu</a>. </p>
+        <p>Don't like the app? Build your own.</p>
     </section>
     <footer>
         <p>Julie Senter

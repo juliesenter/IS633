@@ -3,6 +3,7 @@ function MenuChoice(selection)
     document.getElementById("customerlist").style.visibility="hidden";
     document.getElementById("orderhistory").style.visibility="hidden";
     document.getElementById("customerupdate").style.visibility="hidden";
+    document.getElementById("about").style.visibility="hidden";
     
     switch (selection)
     {
@@ -15,6 +16,9 @@ function MenuChoice(selection)
             break;
         case "update":
             document.getElementById("customerupdate").style.visibility="visible";
+            break;
+        case "about":
+            document.getElementById("about").style.visibility="visible";
             break;
         case "None":
             //No menu item selected, so no section should be displayed
@@ -41,7 +45,7 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
         
         function GenerateOutput(result)//This function receives the data from the service and creates a table to display it
         {
-            var display="<table><tr><th>Update</th><th>Customer ID</th><th>Company Name</th><th>City</th></tr>"; //Table headings
+            var display="<table><tr><th>Update</th><th>Customer ID</th><th>Customer Name</th><th>City</th></tr>"; //Table headings
             var count=0;//Count variable loop
              var customerid="";//Variable to store the Customer ID
              var companyname="";//Variable to store the Customer Name
@@ -63,11 +67,13 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
             }
         }
         
-        function Orders(customerid)//Retrieves a list of orders by a particular customer using the customer ID for the search
+        function OrderHistory()//Retrieves a list of orders by a particular customer using the customer ID for the search
         {
+            MenuChoice("orderhistory");
             var xmlhttp=new XMLHttpRequest();
-            var url="https://student.business.uab.edu/jsonwebservice/service1.svc/getOrdersForCustomer/";//Service URL
-            url+=customerid;//Store ID to complete Service URL
+            var customerid = document.getElementById("CustomerID").value;
+            var url="https://student.business.uab.edu/jsonwebservice/service1.svc/getCustomerOrderHistory/";//Service URL
+            url+=customerid;//Customer ID to complete Service URL
             
             xmlhttp.onreadystatechange=function(){
             if (xmlhttp.readyState==4&&xmlhttp.status==200){
@@ -81,14 +87,15 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
         
         function GenerateOutput(result)//Function that displays results
         {
-            var display="<table><tr><th><th>Order Date</th><th>Order ID</th><th>Ship Address</th><th>Ship City</th><th>Ship Name</th><th>Ship Post Code</th><th>Shipped Date</th></tr>";
+            var display="<table><tr><th>Product</th><th>Total Sold</th></tr>";
             var count=0;
-            for(count=0; count<result.GetOrdersForCustomerResult.length; count++)
+            for(count=0; count<result.length; count++)
             {
-                display+="<tr><td>" + result.GetOrdersForCustomerResult[count].OrderDate + "</td><td>" + result.GetOrdersForCustomerResult[count].OrderID + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipAddress + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipCity + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipName + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipPostCode + "</td><td>" + result.GetOrdersForCustomerResult[count].ShippedDate + "</td></tr>";
+                display+="<tr id=" + count +"><td>" + result[count].ProductName + "</td><td>" + result[count].Total + "</td><td>" + "</td></tr>";
             }
                 display+="</table>";
                 document.getElementById("orders").innerHTML=display;
+                
             }
         }
 
@@ -123,7 +130,7 @@ function CustomerUpdate()
     xmlhttp.onreadystatechange=function(){
         if (xmlhttp.readyState==4&&xmlhttp.status==200){
             var result=JSON.parse(xmlhttp.responseText);
-            var outcome=result.WasSuccessful
+            var outcome=result.WasSuccessful;
             var error=result.Exception;
             OperationResult(outcome, error); //Calls the function that displays the result in an alert message
             MenuChoice("customerlist");//Calls the menu choice function to display the customer list
