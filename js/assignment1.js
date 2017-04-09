@@ -54,7 +54,7 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
             {
                 //Anchor link: <a href="javascript:function("parameter");">
                 customerid=result.GetAllCustomersResult[count].CustomerID;//Assigns the Customer ID to a variable
-                companyname='<a href="javascript:Orders(' + "'" + customerid + "');" + '">';
+                companyname='<a href="javascript:OrderHistory(' + "'" + customerid + "');" + '">';
                 companyname+=result.GetAllCustomersResult[count].CompanyName;
                 companyname+='</a>';
                 
@@ -67,11 +67,11 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
             }
         }
         
-        function OrderHistory()//Retrieves a list of orders by a particular customer using the customer ID for the search
+        function OrderHistory(customerid)//Retrieves a list of orders by a particular customer using the customer ID for the search
         {
             MenuChoice("orderhistory");
             var xmlhttp=new XMLHttpRequest();
-            var customerid = document.getElementById("CustomerID").value;
+            //var customerid = document.getElementById("CustomerID").value;
             var url="https://student.business.uab.edu/jsonwebservice/service1.svc/getCustomerOrderHistory/";//Service URL
             url+=customerid;//Customer ID to complete Service URL
             
@@ -95,6 +95,7 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
             }
                 display+="</table>";
                 document.getElementById("orders").innerHTML=display;
+                MenuChoice("orderhistory");
                 
             }
         }
