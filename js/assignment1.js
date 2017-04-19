@@ -2,7 +2,8 @@ function MenuChoice(selection)
 {
     document.getElementById("customerlist").style.visibility="hidden";
     document.getElementById("orderhistory").style.visibility="hidden";
-    document.getElementById("customerupdate").style.visibility="hidden";
+    document.getElementById("currentorders").style.visibility="hidden";
+    document.getElementById("orderupdate").style.visibility="hidden";
     document.getElementById("about").style.visibility="hidden";
     
     switch (selection)
@@ -14,8 +15,12 @@ function MenuChoice(selection)
         case "orderhistory":
             document.getElementById("orderhistory").style.visibility="visible";
             break;
+        case "currentorders":
+            document.getElementById("currentorders").style.visibility="visible";//Makes the Current Order List HTML section visible
+            //CurrentOrders();//Calls the funciton that creates a list of current customer orders
+            break;
         case "update":
-            document.getElementById("customerupdate").style.visibility="visible";
+            document.getElementById("orderupdate").style.visibility="visible";
             break;
         case "about":
             document.getElementById("about").style.visibility="visible";
@@ -59,7 +64,7 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
                 companyname+='</a>';
                 
                 city=result.GetAllCustomersResult[count].City;//Assigns Customer city to a variable
-                display+='<tr><td><button onclick="CustomerInfo(' + "" + customerid + "')" + '">Update Customer Info</button></td><td>' + customerid +
+                display+='<tr><td><button onclick="CurrentOrders(' + "'" + customerid + "')" + '">Current Orders</button></td><td>' + customerid +
                 "</td><td>" + companyname + "</td><td>" + city + "</td></tr>";//Creates a table row
             }
                 display+="</table>";//closes table html
@@ -100,17 +105,49 @@ function ListCustomers()//This sends a request to the getAllCustomers service an
             }
         }
 
-function CustomerInfo(customerid)
+function CurrentOrders(customerid)
     {
+        //MenuChoice("currentorders");
         var xmlhttp=new XMLHttpRequest();
-        var url="https://student.business.uab.edu/jsonwebservice/service1.svc/GetCustomerOrderInfo/";
+        var url="https://student.business.uab.edu/jsonwebservice/service1.svc/getOrdersForCustomer/";
         url+=customerid;
         
         xmlhttp.onreadystatechange=function(){
             if (xmlhttp.readyState==4&&xmlhttp.status==200){
                 var output=JSON.parse(xmlhttp.responseText);
-                document.getElementById("OrderDate").value=output[0].OrderDate;
+                GenerateOutput(output);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        
+    function GenerateOutput(result)//Function that displays results
+        {
+            var display="<table><tr><th>Order Date</th><th>Order ID</th><th>Ship Address</th><th>Ship City</th><th>Ship Name</th><th>Ship Post Code</th><th>Ship Date</th></tr>";
+            var count=0;
+            var orderid="";//Variable to store the Order ID
+            for(count=0; count<result.GetOrdersForCustomerResult.length; count++)
+            {
+                orderid=result.GetOrdersForCustomerResult[count].OrderID;//Assigns the Order ID to a variable
+                display+="<tr id=" + count +"><td>" + result.GetOrdersForCustomerResult[count].OrderDate + "</td><td>" + result.GetOrdersForCustomerResult[count].OrderID + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipAddress + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipCity + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipName + "</td><td>" + result.GetOrdersForCustomerResult[count].ShipPostCode + "</td><td>" + result.GetOrdersForCustomerResult[count].ShippedDate + "</td><td>" + '</td><td><button onclick="OrderInfo(' + "'" + orderid + "')" + '">Update</button></td></tr>';
+            }
+                display+="</table>";
+                document.getElementById("currorders").innerHTML=display;
+                MenuChoice("currentorders");
+                
+            }
+        }
+function OrderInfo(orderid)
+    {
+        var xmlhttp=new XMLHttpRequest();
+        var url="https://student.business.uab.edu/jsonwebservice/service1.svc/GetCustomerOrderInfo/";
+        url+=orderid;
+        
+        xmlhttp.onreadystatechange=function(){
+            if (xmlhttp.readyState==4&&xmlhttp.status==200){
+                var output=JSON.parse(xmlhttp.responseText);
                 document.getElementById("OrderID").value=output[0].OrderID;
+                document.getElementById("OrderDate").value=output[0].OrderDate;
                 document.getElementById("ShipAddress").value=output[0].ShipAddress;
                 document.getElementById("ShipCity").value=output[0].ShipCity;
                 document.getElementById("ShipName").value=output[0].ShipName;
@@ -125,28 +162,28 @@ function CustomerInfo(customerid)
     }
 
 //This funciton executes an update operation
-function CustomerUpdate()
+function OrderUpdate()
 {
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function(){
         if (xmlhttp.readyState==4&&xmlhttp.status==200){
             var result=JSON.parse(xmlhttp.responseText);
-            var outcome=result.WasSuccessful;
+            var outcome=result;
             var error=result.Exception;
             OperationResult(outcome, error); //Calls the function that displays the result in an alert message
             MenuChoice("customerlist");//Calls the menu choice function to display the customer list
         }
     }
-    var url="https://student.business.uab.edu/jsonwebservice/service1.svc/UpdateOrderAddress/";
-    var orderdate=document.getElementById("OrderDate").value;
+    var url="https://student.business.uab.edu/jsonwebservice/service1.svc/updateOrderAddress";
+    //var orderdate=document.getElementById("OrderDate").value;
     var orderid=document.getElementById("OrderID").value;
     var shipaddress=document.getElementById("ShipAddress").value;
     var shipcity=document.getElementById("ShipCity").value;
-    var shipname=document.getElementByID("ShipName").value;
+    var shipname=document.getElementById("ShipName").value;
     var shippostcode=document.getElementById("ShipPostCode").value;
-    var shippeddate=document.getElementById("ShippedDate").value;
+    //var shippeddate=document.getElementById("ShippedDate").value;
     
-    var parameters='{"OrderDate":' + orderdate + ',"OrderID":"' + orderid + ',"ShipAddress":"' + shipaddress + '","ShipCity":"' + shipcity + '","ShipName":"' + shipname + '","ShipPostCode":"' + shippostcode + '","ShippedDate":"' + shippeddate + '"}';//Creates the JSON string to be sent for the update operation
+    var parameters='{"OrderID":"' + orderid + '","ShipAddress":"' + shipaddress + '","ShipCity":"' + shipcity + '","ShipName":"' + shipname + '","ShipPostCode":"' + shippostcode + '"}';//Creates the JSON string to be sent for the update operation
     
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -169,7 +206,7 @@ function OperationResult(success, exception)
             alert("The operation was not successful because the data string supplied could not be deserialized into the service object.");
             break;
         case -3:
-            alert("The operation was not successful because a resord with the supplied Order ID could not be found");
+            alert("The operation was not successful because a record with the supplied Order ID could not be found");
             break;
         default:
             alert("The operation code returned is not identifiable.");

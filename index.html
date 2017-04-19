@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Assignment 2</title>
+    <title>Assignment 3</title>
     <link rel="stylesheet" type="text/css" href="styles/assignment1.css" />
     <script src="js/assignment1.js"></script>
 </head>
@@ -10,13 +10,14 @@
 <body>
     
     <section id="title">
-        <h1>Assignment 2</h1>
+        <h1>Assignment 3</h1>
         <hr>
             <select onchange="MenuChoice(value)" id="menu">
             <option value="None">Please select an option</option>
             <option value="customerlist">Customer List</option>
             <option value="orderhistory">Customer Order History</option>
-            <option value="update">Update Customer Data</option>
+            <option value="currentorders">Current Orders</option>
+            <option value="update">Update Current Orders</option>
             <option value="about">About This App</option>
         </select>
     </section>
@@ -38,19 +39,39 @@
         <br>
        <button onclick="MenuChoice('customerlist')">Back to Customer List</button>
     </section>
-    <section id="customerupdate">
-        <h2>Customer Information</h2>
+    <section id="currentorders">
+        <h2>Current Orders</h2>
+       <hr>
+       <p id="currorders">Current Orders</p>
+       <br>
+       <br>
+       <button onclick="MenuChoice('customerlist')">Back to Customer List</button>
+    </section>
+    <section id="orderupdate">
+        <h2>Current Orders</h2>
         <hr>
-       <label>Customer ID:</label>
-       <input type="text" id="CustomerID" disabled="true">
+       <label>Order ID:</label>
+       <input type="text" id="OrderID" disabled="true">
        <br>
-       <label>Company Name:</label>
-       <input type="text" id="CompanyName">
+       <label>Order Date:</label>
+       <input type="text" id="OrderDate">
        <br>
-       <label>City:</label>
-       <input type="text" id="city">
+       <label>Ship Address:</label>
+       <input type="text" id="ShipAddress">
        <br>
-       <button onclick="CustomerUpdate(CustomerID)">Update Customer Information</button>
+       <label>Ship City:</label>
+       <input type="text" id="ShipCity">
+       <br>
+       <label>Ship Name:</label>
+       <input type="text" id="ShipName">
+       <br>
+       <label>Ship Post Code:</label>
+       <input type="text" id="ShipPostCode">
+       <br>
+        <label>Ship Date:</label>
+       <input type="text" id="ShippedDate">
+       <br>
+       <button onclick="OrderUpdate()">Update Order</button>
     </section>
     <section id="about">
         <h2>About This App</h2>

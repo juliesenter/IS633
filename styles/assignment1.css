@@ -2,7 +2,8 @@ h1 {font-family: sans-serif; font-size: large; text-align: center;}
 h2 {font-family: sans-serif; text-align: center;}
 #customerlist {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #eeeedd; text-align: center; padding: 5px;}
 #orderhistory {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #e0e0eb; text-align: center; padding: 5px;}
+#currentorders {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #eeeedd; text-align: center; padding: 5px;}
 #about {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #eeeedd; text-align: center; padding: 5px;}
-#customerupdate {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #e0e0eb; text-align: center; padding: 5img {height: 25%; width: 25%;}
+#orderupdate {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #e0e0eb; text-align: center; padding: 5img {height: 25%; width: 25%;}
 footer {position: absolute; bottom: 0; height: 18%;}
 table, th, td {background-color: white; table-layout: auto; padding: 5px; text-align: center;}
