@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Assignment 3</title>
+    <title>Assignment 4</title>
     <link rel="stylesheet" type="text/css" href="styles/assignment1.css" />
     <script src="js/assignment1.js"></script>
 </head>
@@ -10,20 +10,24 @@
 <body>
     
     <section id="title">
-        <h1>Assignment 3</h1>
+        <h1>Assignment 4</h1>
         <hr>
             <select onchange="MenuChoice(value)" id="menu">
             <option value="None">Please select an option</option>
             <option value="customerlist">Customer List</option>
-            <option value="orderhistory">Customer Order History</option>
-            <option value="currentorders">Current Orders</option>
-            <option value="update">Update Current Orders</option>
+            <!--<option value="orderhistory">Customer Order History</option>-->
+            <!--<option value="currentorders">Current Orders</option>-->
+            <!--<option value="update">Update Current Orders</option>-->
+            <option value="addcustomer">Add a Customer</option>
+            <!--<option value="deletecustomer">Delete a Customer</option>-->
             <option value="about">About This App</option>
         </select>
     </section>
     <hr>
     <section id="customerlist">
         <h2>Customer List</h2>
+        <button onclick="MenuChoice('addcustomer')">Add a customer</button>
+        <br>
        <hr>
        <p id="listcustomers">Customer List</p>
     </section>
@@ -73,6 +77,39 @@
        <br>
        <button onclick="OrderUpdate()">Update Order</button>
     </section>
+    <section id="addcustomer">
+        <h2>Add a Customer</h2>
+        <hr>
+       <label>Customer ID:</label>
+       <input type="text" id="custid"><label class="warning">*</label>
+       <br>
+       <label class="warning">The customer ID should be 5 uppercase text characters.</label>
+       <br>
+       <label>Customer Name:</label>
+       <input type="text" id="CompanyName">
+       <br>
+       <label>City:</label>
+       <input type="text" id="City">
+       <br>
+       <br>
+       <button onclick="CreateCustomer()">Add Customer</button>
+       <br>
+    </section>
+    <section id="deletecustomer">
+        <h2>Delete a Customer</h2>
+        <hr>
+        <label>Please enter ID of customer to be deleted:</label>
+        <input type="text" id="customerid"><label class="warning">*</label>
+        <br>
+        <label class="warning">The customer ID should be 5 uppercase text characters.</label>
+        <br>
+        <button onclick="DeleteCustomer()">Delete Customer</button>
+        <br>
+        <hr>
+        <br>
+        <hr>
+
+</section>
     <section id="about">
         <h2>About This App</h2>
         <hr>
