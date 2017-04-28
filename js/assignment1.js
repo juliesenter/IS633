@@ -6,6 +6,7 @@ function MenuChoice(selection)
     document.getElementById("orderupdate").style.visibility="hidden";
     document.getElementById("addcustomer").style.visibility="hidden";
     document.getElementById("deletecustomer").style.visibility="hidden";
+    document.getElementById("location").style.visibility="hidden";
     document.getElementById("about").style.visibility="hidden";
     
     switch (selection)
@@ -29,6 +30,9 @@ function MenuChoice(selection)
             break;
         case "deletecustomer":
             document.getElementById("deletecustomer").style.visibility="visible";
+            break;
+        case "Geolocation":
+            document.getElementById("location").style.visibility="visible";
             break;
         case "about":
             document.getElementById("about").style.visibility="visible";
@@ -316,4 +320,25 @@ function OperationResult4(output4)
         alert("Try again. Your attempt was not successful.");
     }
 
+}
+
+function Location()//Calls the Geolocation function
+{
+    var geo=navigator.geolocation;//References the navigator geolocation service in web browser
+    if (geo)//tests to see if the geo service is available
+    {
+        geo.getCurrentPosition(showPosition);//if the geo service is available, gets the position & calls a function to display
+    }
+    else
+    {
+        alert("Geolocation is not supported");//displays message if geo is not available
+    }
+}
+
+function showPosition(position)//Receives geo data and displays it
+{
+    var latitude=position.coords.latitude;//retrieves latitude data
+    var longitude=position.coords.longitude;//retrieves longitude data
+    document.getElementById("latitude").innerHTML=latitude;
+    document.getElementById("longitude").innerHTML=longitude;
 }

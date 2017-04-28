@@ -8,10 +8,10 @@
     
   <!-- versionCode is optional and Android only -->
 
-  <name>Module 1 Mobile App</name>
+  <name>IS 633 Assn5 App</name>
 
   <description>
-    Module 1 Mobile App
+    IS 633 Assn5 App
   </description>
 
   <author>
@@ -21,5 +21,26 @@
   <preference name="phonegap-version" value="cli-6.5.0" />
   <plugin name="cordova-plugin-whitelist" source="npm" />
   <access origin="*" />
+  <plugin name="cordova-plugin-geolocation" source="npm" />
+  
+  <!-- iPhone 6 / 6+ -->
+  <icon src="Icon-60@3x.png" platform="ios" width="180" height="180" />
+
+  <!-- iPhone / iPod Touch  -->
+  <icon src="Icon-60.png" platform="ios" width="60" height="60" />
+  <icon src="Icon-60@2x.png" platform="ios" width="120" height="120" />
+
+  <!-- iPhone and iPod touch -->
+  <splash src="Default.png" platform="ios" width="320" height="480" />
+  <splash src="Default@2x.png" platform="ios" width="640" height="960" />
+
+  <!-- iPhone 5 / iPod Touch (5th Generation) -->
+  <splash src="Default-568h@2x.png" platform="ios" width="640" height="1136" />
+
+  <!-- iPhone 6 -->
+  <splash src="Default-667h@2x.png" platform="ios" width="750" height="1334" />
+  <splash src="Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
+  <splash src="Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" />
+
 
 </widget>

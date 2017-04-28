@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Assignment 4</title>
+    <title>Assignment 5</title>
     <link rel="stylesheet" type="text/css" href="styles/assignment1.css" />
     <script src="js/assignment1.js"></script>
 </head>
@@ -10,7 +10,7 @@
 <body>
     
     <section id="title">
-        <h1>Assignment 4</h1>
+        <h1>Assignment 5</h1>
         <hr>
             <select onchange="MenuChoice(value)" id="menu">
             <option value="None">Please select an option</option>
@@ -20,6 +20,7 @@
             <!--<option value="update">Update Current Orders</option>-->
             <option value="addcustomer">Add a Customer</option>
             <!--<option value="deletecustomer">Delete a Customer</option>-->
+            <option value="Geolocation">Geolocation</option>
             <option value="about">About This App</option>
         </select>
     </section>
@@ -110,6 +111,18 @@
         <hr>
 
 </section>
+    <section id="location">
+        <h2>Geolocation Test</h2>
+        <hr>
+        <button onclick="Location()">Find Current Location</button>
+        <br>
+        <label>Latitude:</label>
+        <label id="latitude">Latitude Result</label>
+        <br>
+        <label>Longitude:</label>
+        <label id="longitude">Longitude Result</label>
+    </section>
+    
     <section id="about">
         <h2>About This App</h2>
         <hr>
