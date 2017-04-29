@@ -2,15 +2,30 @@
 
 <html>
 <head>
-    <title>Assignment 5</title>
+    <title>Assignment 6</title>
     <link rel="stylesheet" type="text/css" href="styles/assignment1.css" />
     <script src="js/assignment1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script>
+        var objContact;
+        var picturesource;
+        var destinationtype;
+        
+        document.addEventListener("deviceready",onDeviceReady,false);
+        
+        function onDeviceReady()
+        {
+            picturesource=navigator.camera.PictureSourceType;
+            destinationtype=navigator.camera.DestinationType;
+            objContact=navigator.contacts.create();
+        }
+    </script>
 </head>
 
 <body>
     
     <section id="title">
-        <h1>Assignment 5</h1>
+        <h1>Assignment 6</h1>
         <hr>
             <select onchange="MenuChoice(value)" id="menu">
             <option value="None">Please select an option</option>
@@ -21,6 +36,8 @@
             <option value="addcustomer">Add a Customer</option>
             <!--<option value="deletecustomer">Delete a Customer</option>-->
             <option value="Geolocation">Geolocation</option>
+            <option value="camera">Take a Picture</option>
+            <option value="contacts">Access Contacts</option>
             <option value="about">About This App</option>
         </select>
     </section>
@@ -121,6 +138,22 @@
         <br>
         <label>Longitude:</label>
         <label id="longitude">Longitude Result</label>
+    </section>
+    <section id="picture">
+        <h2>Take a Picture</h2>
+        <hr>
+        <button onclick="CapturePhoto()">Take Picture</button>
+        <br>
+        <img id="snapshot" src="" />
+        <br>
+        <br>
+    </section>
+    <section id="contacts">
+        <h2>Access Contacts</h2>
+        <br>
+        <br>
+        <label>Contact Name:</label>
+        <label id="contactname"></label>
     </section>
     
     <section id="about">

@@ -1,6 +1,9 @@
 h1 {font-family: sans-serif; font-size: large; text-align: center;}
 h2 {font-family: sans-serif; text-align: center;}
 .warning {font-style: italic; color: red;}
+#picture {visibility: hidden; position: absolute; height: 75%; width: 100%; overflow: scroll; background-color: #ccffff;}
+#contacts {visibility: hidden; position: absolute; height: 75%; width: 100%; overflow: scroll; backgroun-color: #ddffff;}
+img {float:left; height: auto; width: box-shadow: 10px 10px 5px 5px;}
 #customerlist {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #eeeedd; text-align: center; padding: 5px;}
 #location {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #88FFFF; text-align: center; padding: 5px;}
 #addcustomer {visibility: hidden; position: absolute; height: 75%; width: 600px; overflow: scroll; background-color: #eeeedd; text-align: center; padding: 5px;}

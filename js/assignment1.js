@@ -7,6 +7,8 @@ function MenuChoice(selection)
     document.getElementById("addcustomer").style.visibility="hidden";
     document.getElementById("deletecustomer").style.visibility="hidden";
     document.getElementById("location").style.visibility="hidden";
+    document.getElementById("picture").style.visibility="hidden";
+    document.getElementById("contacts").style.visibility="hidden";
     document.getElementById("about").style.visibility="hidden";
     
     switch (selection)
@@ -33,6 +35,12 @@ function MenuChoice(selection)
             break;
         case "Geolocation":
             document.getElementById("location").style.visibility="visible";
+            break;
+        case "camera":
+            document.getElementById("picture").style.visibility="visible";
+            break;
+        case "contacts":
+            document.getElementById("contacts").style.visibility="visible";
             break;
         case "about":
             document.getElementById("about").style.visibility="visible";
@@ -341,4 +349,50 @@ function showPosition(position)//Receives geo data and displays it
     var longitude=position.coords.longitude;//retrieves longitude data
     document.getElementById("latitude").innerHTML=latitude;
     document.getElementById("longitude").innerHTML=longitude;
+}
+
+function CapturePhoto()
+{
+    navigator.camera.getPicture(onSuccess, onFail, {quality: 20, destinationtype:destinationtype.FILE_URL, saveToPhotoAlbum:true});
+}
+
+function onSuccess(imageURI)
+{
+    var pickdisplay=document.getElementById("snapshot");
+    pickdisplay.style.display='block';
+    pickdisplay.src=imageURI;
+}
+
+function onFail(message)
+{
+    alert("Failed because: " + message);
+}
+
+function PickContact()
+{
+    navigator.contacts.pickContact(function(contact));
+    {
+        var contactinfo="";
+        contactinfo +=contact.name.givenName + "" + contact.name.familyName + "<br>";
+        var count=0;
+        if (contact.phoneNumbers !==null)
+        {
+            for (count=0; count<contact.phoneNumbers.length; count++)
+            {
+                contactinfo += contact.phoneNumbers[count].type +":" + contact.phoneNumbers[count].value + "<br>";
+            }
+        }
+        if (contact.emails !==null)
+        {
+            for(count=0; count<contact.emails.length; count++)
+            {
+                contactinfo +=contact.emails[count]type + ":" + contact.emails[count].value + "<br>";
+            }
+        }
+        document.getElementById("contactname").innerHTML=contactinfo;
+        
+    },function(err)
+    {
+        alert("Error:" + err);
+    }
 }

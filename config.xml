@@ -8,10 +8,10 @@
     
   <!-- versionCode is optional and Android only -->
 
-  <name>IS 633 Assn5 App</name>
+  <name>IS 633 Assn6 App</name>
 
   <description>
-    IS 633 Assn5 App
+    IS 633 Assn6 App
   </description>
 
   <author>
@@ -22,6 +22,8 @@
   <plugin name="cordova-plugin-whitelist" source="npm" />
   <access origin="*" />
   <plugin name="cordova-plugin-geolocation" source="npm" />
+  <plugin name="cordova-plugin-camera" source="npm" />
+  <plubin name="cordova-plugin-contacts" cource="npm" />
   
   <!-- iPhone 6 / 6+ -->
   <icon src="Icon-60@3x.png" platform="ios" width="180" height="180" />
