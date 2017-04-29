@@ -395,4 +395,5 @@ function PickContact()
     {
         alert("Error:" + err);
     }
+    );
 }
