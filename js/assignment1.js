@@ -370,7 +370,7 @@ function onFail(message)
 
 function PickContact()
 {
-    navigator.contacts.pickContact(function(contact));
+    navigator.contacts.PickContact(function(contact));
     {
         var contactinfo="";
         contactinfo +=contact.name.givenName + "" + contact.name.familyName + "<br>";
